@@ -14,18 +14,18 @@ import userRouter from "./Routes/userRouter.js";
 import authRouter from "./Routes/authRouter.js";
 import compression from "compression";
 
-// Load env vars
-dotenv.config();
+// // Load env vars
+// dotenv.config();
 
-// db connection
-dbConnection();
+// // db connection
+// dbConnection();
 
 // Initialize express app
 const app = express();
 
-// Enable other domains to access your application
-app.use(cors());
-app.options("*", cors());
+// // Enable other domains to access your application
+// app.use(cors());
+// app.options("*", cors());
 
 // compress all responses
 // app.use(compression());
