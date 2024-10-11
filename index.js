@@ -43,6 +43,9 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // Routes
+app.get("/", (req, res) => {
+  res.send("Hello, world!");
+});
 app.use("/api/v1/categories", categoryRouter);
 app.use("/api/v1/products", productRouter);
 app.use("/api/v1/users", userRouter);
