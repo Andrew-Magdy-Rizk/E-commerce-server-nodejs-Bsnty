@@ -2,11 +2,11 @@
   "name": "e-commerce-fullstack-bsnty",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "Server.js",
   "type": "module",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node server.js",
-    "dev": "nodemon server.js"
+    "start": "cross-env NODE_ENV=production node Server.js",
+    "dev": "nodemon Server.js"
   },
   "keywords": [],
   "author": "",
