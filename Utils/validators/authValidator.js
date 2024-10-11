@@ -1,6 +1,7 @@
 import { errorValidatorMiddleware } from "../../Middlewares/errorValidatorMiddleware.js";
 import { check } from "express-validator";
 import userSchema from "../../Models/userSchema.js";
+
 export const signUpValid = [
   check("name")
     .notEmpty()
