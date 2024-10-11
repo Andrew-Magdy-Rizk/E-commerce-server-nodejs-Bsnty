@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "Server.js",
-  "engines": {
-    "node": "20.x"
-  },
   "type": "module",
   "scripts": {
     "start": "node Server.js",
@@ -13,6 +10,9 @@
   },
   "keywords": [],
   "author": "",
+  "angines": {
+    "node": "v20.11.1"
+  },
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
