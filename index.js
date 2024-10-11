@@ -28,35 +28,35 @@ app.use(cors());
 app.options("*", cors());
 
 // compress all responses
-app.use(compression());
+// app.use(compression());
 
-// Set static folder
-const __dirname = path.resolve();
+// // Set static folder
+// const __dirname = path.resolve();
 
-// Middlewares
-app.use(express.json({ limit: "20kb" }));
-app.use(express.static(path.join(__dirname, "uploads")));
+// // Middlewares
+// app.use(express.json({ limit: "20kb" }));
+// app.use(express.static(path.join(__dirname, "uploads")));
 
-// Logging middleware
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
-}
+// // Logging middleware
+// if (process.env.NODE_ENV === "development") {
+//   app.use(morgan("dev"));
+// }
 
 // Routes
 app.get("/", (req, res) => {
   res.send("Hello, world!");
 });
-app.use("/api/v1/categories", categoryRouter);
-app.use("/api/v1/products", productRouter);
-app.use("/api/v1/users", userRouter);
-app.use("/api/v1/auth", authRouter);
+// app.use("/api/v1/categories", categoryRouter);
+// app.use("/api/v1/products", productRouter);
+// app.use("/api/v1/users", userRouter);
+// app.use("/api/v1/auth", authRouter);
 
-// Error handling middleware
-app.all("*", (req, res, next) => {
-  next(new ApiError(404, "Not found"));
-});
+// // Error handling middleware
+// app.all("*", (req, res, next) => {
+//   next(new ApiError(404, "Not found"));
+// });
 
-app.use(GlobalError);
+// app.use(GlobalError);
 
 // Initialize port
 const PORT = process.env.PORT || 5000;
@@ -64,11 +64,11 @@ const server = app.listen(PORT, () =>
   console.log(`Server started on port ${PORT}`)
 );
 
-// Handle rejection outside express
-process.on("unhandledRejection", (err) => {
-  console.error(`UnhandledRejection Errors: ${err.name} | ${err.message}`);
-  server.close(() => {
-    console.error(`Shutting down....`);
-    process.exit(1);
-  });
-});
+// // Handle rejection outside express
+// process.on("unhandledRejection", (err) => {
+//   console.error(`UnhandledRejection Errors: ${err.name} | ${err.message}`);
+//   server.close(() => {
+//     console.error(`Shutting down....`);
+//     process.exit(1);
+//   });
+// });
