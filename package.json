@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "Server.js",
-  "type": "module",
   "scripts": {
     "start": "cross-env NODE_ENV=production node Server.js",
     "dev": "nodemon Server.js"
