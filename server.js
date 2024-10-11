@@ -35,7 +35,7 @@ const __dirname = path.resolve();
 
 // Middlewares
 app.use(express.json({ limit: "20kb" }));
-app.use(express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Logging middleware
 if (process.env.NODE_ENV === "development") {
