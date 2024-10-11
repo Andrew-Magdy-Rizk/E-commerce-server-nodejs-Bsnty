@@ -6,7 +6,6 @@ import morgan from "morgan";
 import ApiError from "./Utils/ApiError.js";
 import GlobalError from "./Middlewares/globalErrorMiddleware.js";
 import dbConnection from "./Config/dbConnection.js";
-// import path from "node:path";
 
 // import Routers
 import categoryRouter from "./Routes/categoryRouter.js";
@@ -44,9 +43,6 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // Routes
-app.get("/", (req, res) => {
-  res.status(200).json({ message: "Welcome to E-Commerce Backend" });
-});
 app.use("/api/v1/categories", categoryRouter);
 app.use("/api/v1/products", productRouter);
 app.use("/api/v1/users", userRouter);
