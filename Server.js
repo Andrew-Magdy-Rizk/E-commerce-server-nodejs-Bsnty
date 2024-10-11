@@ -43,17 +43,6 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-// // Serve static files
-// const __dirname = path.resolve();
-
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname, "/client/app")));
-
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "/client/app", "page.js"));
-//   });
-// }
-
 // Routes
 app.use("/api/v1/categories", categoryRouter);
 app.use("/api/v1/products", productRouter);
