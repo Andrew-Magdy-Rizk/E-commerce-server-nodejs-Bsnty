@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "Server.js",
+  "engines": {
+    "node": "16.x"
+  },
   "type": "module",
   "scripts": {
     "start": "cross-env NODE_ENV=production node Server.js",
