@@ -56,9 +56,8 @@ export const resizeProductImages = asyncHandler(async (req, res, next) => {
         req.body.images.push(imageName);
       })
     );
-    return next();
   }
-  next();
+  return next();
 });
 
 export const getProducts = getAll(productSchema);
