@@ -27,6 +27,7 @@ export const getAll = (Schema) =>
 
 export const createOne = (Schema) =>
   asyncHandler(async (req, res) => {
+    console.log("console test:", req.body);
     const docement = await Schema.create(req.body);
     res.status(201).json({
       status: "success",
