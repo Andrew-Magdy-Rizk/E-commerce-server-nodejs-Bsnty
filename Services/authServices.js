@@ -13,7 +13,7 @@ export const signup = asyncHandler(async (req, res) => {
 
   res.status(201).json({
     status: "success",
-    date: user,
+    data: user,
     token,
   });
 });
@@ -32,7 +32,7 @@ export const login = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     status: "success",
-    date: user,
+    data: user,
     token,
   });
 });
