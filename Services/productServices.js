@@ -43,6 +43,7 @@ export const resizeProductImages = asyncHandler(async (req, res, next) => {
 
   if (req.files.imageCover) {
     try {
+      console.log(req.files);
       const coverResult = await new Promise((resolve, reject) => {
         const coverStream = cloudinary.uploader.upload_stream(
           { quality: "auto:good", format: "jpg", folder: "products" },
