@@ -33,24 +33,21 @@ export const resizeImage = asyncHandler(async (req, res, next) => {
   if (req.file) {
     const imagesBuffer = await sharp(req.file.buffer)
       .resize(500)
-      .toFormat("jpeg")
+      .toFormat("jpg")
       .jpeg({ quality: 95 })
       .toBuffer();
     console.log(imagesBuffer);
 
     cloudinary.uploader
-      .upload_stream(
-        { quality: "auto:good", format: "jpg", folder: "categories" },
-        (error, result) => {
-          if (error) {
-            console.log(error);
-            return next(error);
-          } else {
-            req.body.image = result.url;
-            next();
-          }
+      .upload_stream({ folder: "categories" }, (error, result) => {
+        if (error) {
+          console.log(error);
+          return next(error);
+        } else {
+          req.body.image = result.url;
+          next();
         }
-      )
+      })
       .end(imagesBuffer);
   } else {
     next();

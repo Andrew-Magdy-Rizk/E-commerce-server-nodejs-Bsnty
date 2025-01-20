@@ -51,7 +51,7 @@ export const resizeProductImages = asyncHandler(async (req, res, next) => {
       console.log(imageBuffer);
 
       const coverResult = await new Promise((resolve, reject) => {
-        const coverStream = cloudinary.uploader.upload_chunked_stream(
+        const coverStream = cloudinary.uploader.upload_stream(
           { folder: "products" },
           (error, result) => {
             if (error) {
@@ -100,10 +100,9 @@ export const resizeProductImages = asyncHandler(async (req, res, next) => {
             .jpeg({ quality: 95 })
             .toBuffer();
           console.log(imagesBuffer);
-          return res.status(200).json({ status: "good or bar sharp" });
 
           return new Promise((resolve, reject) => {
-            const imageStream = cloudinary.uploader.upload_chunked_stream(
+            const imageStream = cloudinary.uploader.upload_stream(
               { folder: "products" },
               (error, result) => {
                 if (error) return reject(error);
