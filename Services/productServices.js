@@ -43,7 +43,13 @@ export const resizeProductImages = asyncHandler(async (req, res, next) => {
 
   if (req.files.imageCover) {
     try {
-      console.log(req.files);
+      const imageBuffer = await sharp(req.files.imageCover[0].buffer)
+        .resize(500)
+        .toFormat("jpeg")
+        .jpeg({ quality: 95 })
+        .toBuffer();
+      console.log(imageBuffer);
+
       const coverResult = await new Promise((resolve, reject) => {
         const coverStream = cloudinary.uploader.upload_stream(
           { quality: "auto:good", format: "jpg", folder: "products" },
@@ -55,7 +61,7 @@ export const resizeProductImages = asyncHandler(async (req, res, next) => {
             }
           }
         );
-        coverStream.end(req.files.imageCover[0].buffer);
+        coverStream.end(imageBuffer);
       });
 
       req.body.imageCover = coverResult;
@@ -87,19 +93,25 @@ export const resizeProductImages = asyncHandler(async (req, res, next) => {
   if (req.files.images) {
     try {
       req.body.images = await Promise.all(
-        req.files.images.map(
-          (img) =>
-            new Promise((resolve, reject) => {
-              const imageStream = cloudinary.uploader.upload_stream(
-                { quality: "auto:good", format: "jpg", folder: "products" },
-                (error, result) => {
-                  if (error) return reject(error);
-                  else return resolve(result.url);
-                }
-              );
-              imageStream.end(img.buffer);
-            })
-        )
+        req.files.images.map(async (img) => {
+          const imagesBuffer = await sharp(img.buffer)
+            .resize(500)
+            .toFormat("jpeg")
+            .jpeg({ quality: 95 })
+            .toBuffer();
+          console.log(imagesBuffer);
+
+          return new Promise((resolve, reject) => {
+            const imageStream = cloudinary.uploader.upload_stream(
+              { quality: "auto:good", format: "jpg", folder: "products" },
+              (error, result) => {
+                if (error) return reject(error);
+                else return resolve(result.url);
+              }
+            );
+            imageStream.end(imagesBuffer);
+          });
+        })
       );
     } catch (err) {
       console.log(err);
