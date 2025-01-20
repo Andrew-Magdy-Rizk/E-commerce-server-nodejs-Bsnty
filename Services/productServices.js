@@ -100,6 +100,7 @@ export const resizeProductImages = asyncHandler(async (req, res, next) => {
             .jpeg({ quality: 95 })
             .toBuffer();
           console.log(imagesBuffer);
+          return res.status(200).json({ status: "good or bar sharp" });
 
           return new Promise((resolve, reject) => {
             const imageStream = cloudinary.uploader.upload_chunked_stream(
