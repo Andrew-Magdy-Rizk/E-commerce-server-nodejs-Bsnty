@@ -45,14 +45,14 @@ export const resizeProductImages = asyncHandler(async (req, res, next) => {
     try {
       const imageBuffer = await sharp(req.files.imageCover[0].buffer)
         .resize(500)
-        .toFormat("jpeg")
+        .toFormat("jpg")
         .jpeg({ quality: 95 })
         .toBuffer();
       console.log(imageBuffer);
 
       const coverResult = await new Promise((resolve, reject) => {
         const coverStream = cloudinary.uploader.upload_stream(
-          { quality: "auto:good", format: "jpg", folder: "products" },
+          { folder: "products" },
           (error, result) => {
             if (error) {
               return reject(error);
@@ -96,14 +96,14 @@ export const resizeProductImages = asyncHandler(async (req, res, next) => {
         req.files.images.map(async (img) => {
           const imagesBuffer = await sharp(img.buffer)
             .resize(500)
-            .toFormat("jpeg")
+            .toFormat("jpg")
             .jpeg({ quality: 95 })
             .toBuffer();
           console.log(imagesBuffer);
 
           return new Promise((resolve, reject) => {
             const imageStream = cloudinary.uploader.upload_stream(
-              { quality: "auto:good", format: "jpg", folder: "products" },
+              { folder: "products" },
               (error, result) => {
                 if (error) return reject(error);
                 else return resolve(result.url);
