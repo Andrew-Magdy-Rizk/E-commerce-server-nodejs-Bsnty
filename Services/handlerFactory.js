@@ -21,6 +21,7 @@ export const getAll = (Schema) =>
     const data = await mongooseQuery;
     res.status(200).json({
       status: "success",
+      pagination,
       data,
     });
   });
