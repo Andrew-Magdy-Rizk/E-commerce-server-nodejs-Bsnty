@@ -31,10 +31,8 @@ export const updateProductValid = [
     .withMessage("Invalid price"),
   check("priceAfterDiscount")
     .optional()
-    .isNumeric()
-    .withMessage("Price must be a number")
     .custom((value, { req }) => {
-      if (parseFloat(value) > parseFloat(req.body.price)) {
+      if (parseFloat(value) > parseFloat(req.body.price) && value !== "") {
         throw new Error("Price after discount must be less than price");
       }
       return true;
