@@ -27,7 +27,7 @@ export const updateProductValid = [
     .withMessage("Price must be a number")
     .isLength({ max: 200000 })
     .withMessage("Price can not exceed 200000")
-    .custom((value) => /^\d+(\.\d{1,2})?$/.test(value))
+    .custom((value) => /^\d+(\.\d{1,2})?$/.test(value)) // regex to validate price
     .withMessage("Invalid price"),
   check("priceAfterDiscount")
     .optional()
@@ -36,9 +36,9 @@ export const updateProductValid = [
         throw new Error("Price after discount must be less than price");
       }
       return true;
-    })
-    .custom((value) => /^\d+(\.\d{1,2})?$/.test(value))
-    .withMessage("Invalid price"),
+    }),
+  // .custom((value) => /^\d+(\.\d{1,2})?$/.test(value))
+  // .withMessage("Invalid price"),
   check("colors").optional().isArray().withMessage("Colors must be an array"),
   check("imageCover").optional(),
   check("images").optional().isArray().withMessage("Images must be an array"),
