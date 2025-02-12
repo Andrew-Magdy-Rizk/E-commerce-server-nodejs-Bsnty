@@ -5,8 +5,8 @@ import {
   getCategories,
   getCategory,
   updateCategory,
-  uploadCategoryImage,
-  resizeImage,
+  // uploadCategoryImage,
+  // resizeImage,
 } from "../Services/categoryServices.js";
 import {
   createCategoryValid,
@@ -23,8 +23,8 @@ router
   .post(
     protect,
     allowTo("admin"),
-    uploadCategoryImage,
-    resizeImage,
+    // uploadCategoryImage,
+    // resizeImage,
     createCategoryValid,
     createCategory
   )

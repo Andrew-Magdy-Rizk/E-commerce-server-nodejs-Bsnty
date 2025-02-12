@@ -12,6 +12,8 @@ import categoryRouter from "./Routes/categoryRouter.js";
 import productRouter from "./Routes/productRouter.js";
 import userRouter from "./Routes/userRouter.js";
 import authRouter from "./Routes/authRouter.js";
+import candelRouter from "./Routes/candelRouter.js";
+import orderRouter from "./Routes/orderRouter.js";
 import compression from "compression";
 
 // Load env vars
@@ -47,6 +49,8 @@ app.use("/api/v1/categories", categoryRouter);
 app.use("/api/v1/products", productRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/candels", candelRouter);
+app.use("/api/v1/orders", orderRouter);
 
 // Error handling middleware
 app.all("*", (req, res, next) => {

@@ -1,6 +1,6 @@
 import { check } from "express-validator";
 import { errorValidatorMiddleware } from "../../Middlewares/errorValidatorMiddleware.js";
-import categorySchema from "../../Models/categorySchema.js";
+import candelSchema from "../../Models/candelSchema.js";
 
 export const getProductValid = [
   check("Id").isMongoId().withMessage("Id must be a valid MongoId"),

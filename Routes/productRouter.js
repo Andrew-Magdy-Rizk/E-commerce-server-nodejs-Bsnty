@@ -5,8 +5,8 @@ import {
   getProduct,
   updateProduct,
   deleteProduct,
-  uploadProductImages,
-  resizeProductImages,
+  // uploadProductImages,
+  // resizeProductImages,
 } from "../Services/productServices.js";
 import {
   getProductValid,
@@ -23,8 +23,8 @@ router
   .post(
     protect,
     allowTo("admin"),
-    uploadProductImages,
-    resizeProductImages,
+    // uploadProductImages,
+    // resizeProductImages,
     createProductValid,
     createProduct
   )
