@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import categorySchema from "../Models/categorySchema.js";
+import candelSchema from "../Models/candelSchema.js";
 import {
   createOne,
   deleteOne,
@@ -54,12 +54,12 @@ import cloudinary from "../Config/cloudinary.js";
 //   }
 // });
 
-export const getCategories = getAll(categorySchema);
+export const getCandels = getAll(candelSchema);
 
-export const createCategory = createOne(categorySchema);
+export const createCandel = createOne(candelSchema);
 
-export const getCategory = getOne(categorySchema);
+export const getCandel = getOne(candelSchema);
 
-export const updateCategory = updateOne(categorySchema);
+export const updateCandel = updateOne(candelSchema);
 
-export const deleteCategory = deleteOne(categorySchema);
+export const deleteCandel = deleteOne(candelSchema);

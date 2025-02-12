@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import categorySchema from "../Models/categorySchema.js";
+import orderSchema from "../Models/orderSchema.js";
 import {
   createOne,
   deleteOne,
@@ -54,12 +54,12 @@ import cloudinary from "../Config/cloudinary.js";
 //   }
 // });
 
-export const getCategories = getAll(categorySchema);
+export const getOrders = getAll(orderSchema);
 
-export const createCategory = createOne(categorySchema);
+export const createOrder = createOne(orderSchema);
 
-export const getCategory = getOne(categorySchema);
+export const getOrder = getOne(orderSchema);
 
-export const updateCategory = updateOne(categorySchema);
+export const updateOrder = updateOne(orderSchema);
 
-export const deleteCategory = deleteOne(categorySchema);
+export const deleteOrder = deleteOne(orderSchema);

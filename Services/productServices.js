@@ -13,113 +13,113 @@ import {
 import sharp from "sharp";
 import cloudinary from "../Config/cloudinary.js";
 
-export const uploadProductImages = uploadMixOfImages([
-  {
-    name: "imageCover",
-    maxCount: 1,
-  },
-  {
-    name: "images",
-    maxCount: 5,
-  },
-]);
+// export const uploadProductImages = uploadMixOfImages([
+//   {
+//     name: "imageCover",
+//     maxCount: 1,
+//   },
+//   {
+//     name: "images",
+//     maxCount: 5,
+//   },
+// ]);
 
-export const resizeProductImages = asyncHandler(async (req, res, next) => {
-  // console.log(req.files);
-  //1- Image processing for imageCover
+// export const resizeProductImages = asyncHandler(async (req, res, next) => {
+//   // console.log(req.files);
+//   //1- Image processing for imageCover
 
-  // if (req.files.imageCover) {
-  //   const imageCoverFileName = `product-${uuidv4()}-${Date.now()}-cover.jpeg`;
+//   // if (req.files.imageCover) {
+//   //   const imageCoverFileName = `product-${uuidv4()}-${Date.now()}-cover.jpeg`;
 
-  //   await sharp(req.files.imageCover[0].buffer)
-  //     .resize(450, 500)
-  //     .toFormat("jpeg")
-  //     .jpeg({ quality: 95 })
-  //     .toFile(`uploads/products/${imageCoverFileName}`);
+//   //   await sharp(req.files.imageCover[0].buffer)
+//   //     .resize(450, 500)
+//   //     .toFormat("jpeg")
+//   //     .jpeg({ quality: 95 })
+//   //     .toFile(`uploads/products/${imageCoverFileName}`);
 
-  //   // Save image into our db
-  //   req.body.imageCover = imageCoverFileName;
-  // }
+//   //   // Save image into our db
+//   //   req.body.imageCover = imageCoverFileName;
+//   // }
 
-  if (req.files.imageCover) {
-    try {
-      const imageBuffer = await sharp(req.files.imageCover[0].buffer)
-        .resize(500)
-        .toFormat("jpg")
-        .jpeg({ quality: 95 })
-        .toBuffer();
-      console.log(imageBuffer);
+//   if (req.files.imageCover) {
+//     try {
+//       const imageBuffer = await sharp(req.files.imageCover[0].buffer)
+//         .resize(500)
+//         .toFormat("jpg")
+//         .jpeg({ quality: 95 })
+//         .toBuffer();
+//       console.log(imageBuffer);
 
-      const coverResult = await new Promise((resolve, reject) => {
-        const coverStream = cloudinary.uploader.upload_stream(
-          { folder: "products" },
-          (error, result) => {
-            if (error) {
-              return reject(error);
-            } else {
-              return resolve(result.url);
-            }
-          }
-        );
-        coverStream.end(imageBuffer);
-      });
+//       const coverResult = await new Promise((resolve, reject) => {
+//         const coverStream = cloudinary.uploader.upload_stream(
+//           { folder: "products" },
+//           (error, result) => {
+//             if (error) {
+//               return reject(error);
+//             } else {
+//               return resolve(result.url);
+//             }
+//           }
+//         );
+//         coverStream.end(imageBuffer);
+//       });
 
-      req.body.imageCover = coverResult;
-    } catch (err) {
-      console.log(err);
-      return next(err);
-    }
-  } else {
-    next();
-  }
-  //2- Image processing for images
-  // if (req.files.images) {
-  //   req.body.images = [];
-  //   await Promise.all(
-  //     req.files.images.map(async (img, index) => {
-  //       const imageName = `product-${uuidv4()}-${Date.now()}-${index + 1}.jpeg`;
-  //       await sharp(img.buffer)
-  //         .resize(450, 500)
-  //         .toFormat("jpeg")
-  //         .jpeg({ quality: 95 })
-  //         .toFile(`uploads/products/${imageName}`);
+//       req.body.imageCover = coverResult;
+//     } catch (err) {
+//       console.log(err);
+//       return next(err);
+//     }
+//   } else {
+//     next();
+//   }
+//   //2- Image processing for images
+//   // if (req.files.images) {
+//   //   req.body.images = [];
+//   //   await Promise.all(
+//   //     req.files.images.map(async (img, index) => {
+//   //       const imageName = `product-${uuidv4()}-${Date.now()}-${index + 1}.jpeg`;
+//   //       await sharp(img.buffer)
+//   //         .resize(450, 500)
+//   //         .toFormat("jpeg")
+//   //         .jpeg({ quality: 95 })
+//   //         .toFile(`uploads/products/${imageName}`);
 
-  //       // Save image into our db
-  //       req.body.images.push(imageName);
-  //     })
-  //   );
-  // }
+//   //       // Save image into our db
+//   //       req.body.images.push(imageName);
+//   //     })
+//   //   );
+//   // }
 
-  if (req.files.images) {
-    try {
-      req.body.images = await Promise.all(
-        req.files.images.map(async (img) => {
-          const imagesBuffer = await sharp(img.buffer)
-            .resize(500)
-            .toFormat("jpg")
-            .jpeg({ quality: 95 })
-            .toBuffer();
-          console.log(imagesBuffer);
+//   if (req.files.images) {
+//     try {
+//       req.body.images = await Promise.all(
+//         req.files.images.map(async (img) => {
+//           const imagesBuffer = await sharp(img.buffer)
+//             .resize(500)
+//             .toFormat("jpg")
+//             .jpeg({ quality: 95 })
+//             .toBuffer();
+//           console.log(imagesBuffer);
 
-          return new Promise((resolve, reject) => {
-            const imageStream = cloudinary.uploader.upload_stream(
-              { folder: "products" },
-              (error, result) => {
-                if (error) return reject(error);
-                else return resolve(result.url);
-              }
-            );
-            imageStream.end(imagesBuffer);
-          });
-        })
-      );
-    } catch (err) {
-      console.log(err);
-      return next(err);
-    }
-  }
-  next();
-});
+//           return new Promise((resolve, reject) => {
+//             const imageStream = cloudinary.uploader.upload_stream(
+//               { folder: "products" },
+//               (error, result) => {
+//                 if (error) return reject(error);
+//                 else return resolve(result.url);
+//               }
+//             );
+//             imageStream.end(imagesBuffer);
+//           });
+//         })
+//       );
+//     } catch (err) {
+//       console.log(err);
+//       return next(err);
+//     }
+//   }
+//   next();
+// });
 
 export const getProducts = getAll(productSchema);
 
