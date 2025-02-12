@@ -8,7 +8,7 @@ export const signup = asyncHandler(async (req, res) => {
   const user = await userSchema.create(req.body);
 
   const token = JWT.sign({ userId: user._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_IN,
+    expiresIn: "30d",
   });
 
   res.status(201).json({
@@ -27,7 +27,7 @@ export const login = asyncHandler(async (req, res, next) => {
   }
 
   const token = JWT.sign({ userId: user._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_IN,
+    expiresIn: "30d",
   });
 
   res.status(200).json({
