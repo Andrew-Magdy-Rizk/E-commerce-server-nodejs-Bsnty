@@ -17,8 +17,8 @@ export const updateProductValid = [
     .withMessage("Name must be less than 50 characters"),
   check("description")
     .optional()
-    .isLength({ min: 20 })
-    .withMessage("Description must be at least 20 characters")
+    // .isLength({ min: 20 })
+    // .withMessage("Description must be at least 20 characters")
     .isLength({ max: 2000 })
     .withMessage("Description can not exceed 2000 characters"),
   check("price")
@@ -73,7 +73,10 @@ export const updateProductValid = [
 ];
 export const createProductValid = [
   check("name").notEmpty().withMessage("Name is required"),
-  check("description").notEmpty().withMessage("Description is required"),
+  check("description")
+    .optional()
+    .isLength({ max: 2000 })
+    .withMessage("Description can not exceed 2000 characters"),
   check("price").notEmpty().withMessage("Price is required"),
   check("category").notEmpty().withMessage("Category is required"),
   check("imageCover").notEmpty().withMessage("Image Cover is required"),
